@@ -1,14 +1,15 @@
 const { Client } = require('pg')
+require('dotenv').config();
  
 const conexion = async() => {
     try {
 
         const client = new Client({
-            user: 'postgres',
-            host: 'localhost',
-            database: 'prueba',
-            password: 'agro1113$',
-            port: 5432,
+            user: 'readonly',
+            host: 'agroplastic.erp.master.innlab.cl',
+            database: 'erp_db',
+            password: 'emezvYN87ySZKW',
+            port: process.env.PORT_BD,
           })
 
           await client.connect()

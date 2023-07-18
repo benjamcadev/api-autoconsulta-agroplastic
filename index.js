@@ -1,5 +1,4 @@
-// Conexion a la BD de postgres
-const { conexion } = require("./database/connection")
+
 const express = require("express")
 const cors = require("cors")
 
@@ -14,7 +13,17 @@ app.use(cors())
 app.use(express.json())
 
 // RUTAS
+const rutas_producto = require("./routes/producto")
 
+app.use("/api", rutas_producto)
+
+
+app.get("/",(req,res) => {
+    
+    return res.status(200).send(
+        "<h1>Api autoconsulta</h1>"
+    )
+})
 
 //Poner servidor a escuchar peticiones
 app.listen(puerto,() =>{
@@ -22,19 +31,5 @@ app.listen(puerto,() =>{
 })
 
 
-///// CONSULTANDO A LA BASE DE DATOS //////
-const text = 'select nombre, precio from productos where nombre = $1'
-const values = ['toner']
-
-const response = async() => {
-    const cliente =  await conexion()
-    const res = await cliente.query(text, values)
-    console.log(res.rows)
-    cliente.end()
-}
-
-response()
-
-////////////////////////////////////////////////
 
 
