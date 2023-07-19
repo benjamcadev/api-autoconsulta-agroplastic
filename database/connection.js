@@ -5,10 +5,10 @@ const conexion = async() => {
     try {
 
         const client = new Client({
-            user: 'readonly',
-            host: 'agroplastic.erp.master.innlab.cl',
-            database: 'erp_db',
-            password: 'emezvYN87ySZKW',
+            user: process.env.USER_BD,
+            host: process.env.HOST_BD,
+            database: process.env.NAME_BD,
+            password: process.env.PASS_BD,
             port: process.env.PORT_BD,
           })
 

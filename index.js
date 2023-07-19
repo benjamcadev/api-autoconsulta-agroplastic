@@ -10,8 +10,8 @@ const puerto = 3900
 app.use(cors())
 
 // Convertir body a objeto js
-app.use(express.json())
-
+app.use(express.json()) // recibir datos con content-type/json
+app.use(express.urlencoded({extended:true})) // recibir datos form-urlencoded
 // RUTAS
 const rutas_producto = require("./routes/producto")
 
