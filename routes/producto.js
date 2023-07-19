@@ -3,6 +3,6 @@ const router = express.Router()
 const ProductoController = require("../controllers/producto")
 // Rutas
 
-router.get("/get-producto",ProductoController.getProducto)
+router.post("/get-producto",ProductoController.getProducto)
 
 module.exports = router
