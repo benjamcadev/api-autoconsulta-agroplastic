@@ -63,7 +63,11 @@ const getProducto = async(req,res) => {
 
     const cliente_mariadb =  await conexionMariadb()
     const response_mariadb = await cliente_mariadb.query("INSERT INTO registros_consultas (codigo_producto, nombre_producto, precio_producto, fecha_consulta) value (?,?,?,?)", ["toner2", "mariadb", "3000", fecha_actual])
-    console.log(response_mariadb); // { affectedRows: 1, insertId: 1, warningStatus: 0 }
+    cliente_mariadb.end()
+
+    if (!response_mariadb.affectedRows) {
+        console.log('Problema en registrar consulta en maria db producto '+ codigo);
+    }
 
     // rescatar si tiene descuentos por tramos
     const text_tramos = 'SELECT wh_product_id,quantity_discount,unit_price_discount,percentage_discount FROM sl_wholesale_discount WHERE wh_product_id = $1 AND g_branch_office_id = 1'
