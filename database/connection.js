@@ -1,4 +1,5 @@
 const { Client } = require('pg')
+const mariadb = require('mariadb');
 require('dotenv').config();
  
 const conexion = async() => {
@@ -18,15 +19,37 @@ const conexion = async() => {
     
       } catch (error) {
         console.log(error);
-        throw new Error("No se ha podido conectar a la base de datos " + error);
+        throw new Error("No se ha podido conectar a la base de datos postgres" + error);
       }
+}
+
+const conexionMariadb = async() => {
+
+  try {
+      const pool = mariadb.createPool({
+        host: '192.168.1.4', 
+        user:'remoto', 
+        password: 'agro1113$',
+        database: 'Autoconsulta',
+        connectionLimit: 5
+  })
+
+
+      let conn = await pool.getConnection();
+      return conn
+    
+  } catch (error) {
+    console.log(error)
+    throw new Error("No se ha podido conectar a la base de datos mariadb " + error)
+  }
 }
  
 
 
 
   module.exports = {
-    conexion
+    conexion,
+    conexionMariadb
 }
 
 

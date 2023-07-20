@@ -1,5 +1,5 @@
 // Conexion a la BD de postgres
-const { conexion } = require("../database/connection")
+const { conexion, conexionMariadb } = require("../database/connection")
 const validator = require("validator")
 
 const getProducto = async(req,res) => {
@@ -56,6 +56,14 @@ const getProducto = async(req,res) => {
         name,
         precio: Number(sale_price)
     }
+
+    // Guardar un registro de la consulta del producto
+    let tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+    let fecha_actual = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1);
+
+    const cliente_mariadb =  await conexionMariadb()
+    const response_mariadb = await cliente_mariadb.query("INSERT INTO registros_consultas (codigo_producto, nombre_producto, precio_producto, fecha_consulta) value (?,?,?,?)", ["toner2", "mariadb", "3000", fecha_actual])
+    console.log(response_mariadb); // { affectedRows: 1, insertId: 1, warningStatus: 0 }
 
     // rescatar si tiene descuentos por tramos
     const text_tramos = 'SELECT wh_product_id,quantity_discount,unit_price_discount,percentage_discount FROM sl_wholesale_discount WHERE wh_product_id = $1 AND g_branch_office_id = 1'
