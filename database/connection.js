@@ -30,8 +30,7 @@ const conexionMariadb = async() => {
         host: '192.168.1.4', 
         user:'remoto_autoconsulta', 
         password: 'agro1113$',
-        database: 'Autoconsulta',
-        connectionLimit: 5
+        database: 'Autoconsulta'
   })
 
 
