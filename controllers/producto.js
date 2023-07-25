@@ -63,7 +63,7 @@ const getProducto = async(req,res) => {
 
     const cliente_mariadb =  await conexionMariadb()
     const response_mariadb = await cliente_mariadb.query("INSERT INTO registros_consultas (codigo_producto, nombre_producto, precio_producto, fecha_consulta) value (?,?,?,?)", ["toner2", "mariadb", "3000", fecha_actual])
-    cliente_mariadb.end()
+    cliente_mariadb.destroy()
 
     if (!response_mariadb.affectedRows) {
         console.log('Problema en registrar consulta en maria db producto '+ codigo);
