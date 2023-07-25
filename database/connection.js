@@ -28,7 +28,7 @@ const conexionMariadb = async() => {
   try {
       const pool = mariadb.createPool({
         host: '192.168.1.4', 
-        user:'remoto', 
+        user:'remoto_autoconsulta', 
         password: 'agro1113$',
         database: 'Autoconsulta',
         connectionLimit: 5

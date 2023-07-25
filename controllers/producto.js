@@ -106,7 +106,7 @@ const imagen_obj = await fetch('https://agroplastic.cl/wp-json/wp/v2/media?' + n
 //console.log(imagen_obj);
   if (imagen_obj.length === 0) {
     // No existe imagen en la pagina web 
-    imagen_url = '../public/images/producto_no_disponible.webp'
+    imagen_url = false
   }else{
     imagen_url = imagen_obj[0].media_details.sizes.medium.source_url
 
