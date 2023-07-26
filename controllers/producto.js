@@ -62,7 +62,7 @@ const getProducto = async(req,res) => {
     let fecha_actual = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1);
 
     const cliente_mariadb =  await conexionMariadb()
-    const response_mariadb = await cliente_mariadb.query("INSERT INTO registros_consultas (codigo_producto, nombre_producto, precio_producto, fecha_consulta) value (?,?,?,?)", ["toner2", "mariadb", "3000", fecha_actual])
+    const response_mariadb = await cliente_mariadb.query("INSERT INTO registros_consultas (codigo_producto, nombre_producto, precio_producto, fecha_consulta) value (?,?,?,?)", [codigo, name, sale_price, fecha_actual])
     cliente_mariadb.end()
 
     if (!response_mariadb.affectedRows) {
