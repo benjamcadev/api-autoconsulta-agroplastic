@@ -57,17 +57,17 @@ const getProducto = async(req,res) => {
         precio: Number(sale_price)
     }
 
-    // Guardar un registro de la consulta del producto
-    let tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
-    let fecha_actual = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1);
+    // // Guardar un registro de la consulta del producto
+    // let tzoffset = (new Date()).getTimezoneOffset() * 60000; //offset in milliseconds
+    // let fecha_actual = (new Date(Date.now() - tzoffset)).toISOString().slice(0, -1);
 
-    const cliente_mariadb =  await conexionMariadb()
-    const response_mariadb = await cliente_mariadb.query("INSERT INTO registros_consultas (codigo_producto, nombre_producto, precio_producto, fecha_consulta) value (?,?,?,?)", [codigo, name, sale_price, fecha_actual])
-    cliente_mariadb.end()
+    // const cliente_mariadb =  await conexionMariadb()
+    // const response_mariadb = await cliente_mariadb.query("INSERT INTO registros_consultas (codigo_producto, nombre_producto, precio_producto, fecha_consulta) value (?,?,?,?)", [codigo, name, sale_price, fecha_actual])
+    // cliente_mariadb.end()
 
-    if (!response_mariadb.affectedRows) {
-        console.log('Problema en registrar consulta en maria db producto '+ codigo);
-    }
+    // if (!response_mariadb.affectedRows) {
+    //     console.log('Problema en registrar consulta en maria db producto '+ codigo);
+    // }
 
     // rescatar si tiene descuentos por tramos
     const text_tramos = 'SELECT wh_product_id,quantity_discount,unit_price_discount,percentage_discount FROM sl_wholesale_discount WHERE wh_product_id = $1 AND g_branch_office_id = 1'
