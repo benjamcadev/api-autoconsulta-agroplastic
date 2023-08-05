@@ -31,7 +31,8 @@ const getProducto = async(req,res) => {
     'ON wh_product_upc_code.wh_product_id = wh_product.id '+
     'WHERE wh_product.alias_name = $1'+
     ' OR wh_product_upc_code.upc_code = $1'+
-    ' AND sl_detail_list_price.sl_list_price_id = 1'
+    ' AND sl_detail_list_price.sl_list_price_id = 1' +
+    ' AND wh_product.flag_delete = false'
 
     const values = [codigo]
 
