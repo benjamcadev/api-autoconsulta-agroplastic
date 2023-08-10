@@ -30,9 +30,11 @@ const getProducto = async(req,res) => {
     'INNER JOIN wh_product_upc_code '+
     'ON wh_product_upc_code.wh_product_id = wh_product.id '+
     'WHERE wh_product.alias_name = $1'+
+    ' AND wh_product.flag_delete = false' +
     ' OR wh_product_upc_code.upc_code = $1'+
-    ' AND sl_detail_list_price.sl_list_price_id = 1' +
-    ' AND wh_product.flag_delete = false'
+    ' AND wh_product_upc_code.flag_delete = false' +
+    ' AND sl_detail_list_price.sl_list_price_id = 1' 
+    
 
     const values = [codigo]
 
