@@ -28,7 +28,16 @@ app.get("/",(req,res) => {
 //Poner servidor a escuchar peticiones
 app.listen(puerto,() =>{
     console.log("Servidor de node corriendo en el puerto: ", puerto)
-})
+}).on('error', function(err){
+    console.log('on error handler');
+    console.log(err);
+});
+
+process.on('uncaughtException', function(err) {
+    console.log('ERROR CAPTURADO: ');
+    console.log(err);
+});
+
 
 
 

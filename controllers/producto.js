@@ -38,6 +38,8 @@ const getProducto = async(req,res) => {
 
     const values = [codigo]
 
+   
+
     // Realizamos la query
     const cliente =  await conexion()
     const response = await cliente.query(text, values)
