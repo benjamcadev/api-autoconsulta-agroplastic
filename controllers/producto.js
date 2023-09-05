@@ -38,7 +38,7 @@ const getProducto = async(req,res) => {
 
     const values = [codigo]
 
-    console.log(codigo); console.log(codigo);
+    console.log(codigo);
         
     // Realizamos la query
     const cliente =  await conexion()
