@@ -38,11 +38,16 @@ const getProducto = async(req,res) => {
 
     const values = [codigo]
 
-   
-
+    console.log(codigo);
+    
     // Realizamos la query
     const cliente =  await conexion()
     const response = await cliente.query(text, values)
+
+   
+    
+
+    noExiste()
 
     // Validar si array esta vacio
     if (response.rowCount == 0) {

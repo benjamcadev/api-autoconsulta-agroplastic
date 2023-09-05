@@ -34,8 +34,9 @@ app.listen(puerto,() =>{
 });
 
 process.on('uncaughtException', function(err) {
-    console.log('ERROR CAPTURADO: ');
-    console.log(err);
+    var date = new Date()
+    console.error(`+++++++ ${date} error encontrado, logging event +++++++`)
+    console.error(err.stack)
 });
 
 
