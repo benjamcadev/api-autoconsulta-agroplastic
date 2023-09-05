@@ -18,7 +18,7 @@ const conexion = async() => {
           return client
     
       } catch (error) {
-        console.log(error);
+        //console.log(error);
         throw new Error("No se ha podido conectar a la base de datos postgres" + error);
       }
 }
